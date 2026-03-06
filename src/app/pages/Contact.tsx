@@ -1,30 +1,108 @@
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useForm } from '@formspree/react';
 import { useState } from 'react';
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  });
+// Formspree Form ID - در داشبورد Formspree فرم بسازید و info@ezdigitalsolutions.nl را به‌عنوان گیرنده تنظیم کنید
+const FORMSPREE_FORM_ID = import.meta.env.VITE_FORMSPREE_FORM_ID || '';
 
-  const handleSubmit = (e: React.FormEvent) => {
+function ContactFormWithFormspree() {
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label htmlFor="name" className="block text-[#0f1729] mb-2">Name *</label>
+          <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all" placeholder="Your name" />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-[#0f1729] mb-2">Email *</label>
+          <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all" placeholder="your.email@company.com" />
+        </div>
+        <div>
+          <label htmlFor="company" className="block text-[#0f1729] mb-2">Company</label>
+          <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all" placeholder="Your company name" />
+        </div>
+        <div>
+          <label htmlFor="message" className="block text-[#0f1729] mb-2">Message *</label>
+          <textarea id="message" name="message" required rows={6} className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all resize-none" placeholder="Tell us about your project and what you're looking to achieve..." />
+        </div>
+        {state.succeeded && <p className="text-green-600 font-medium">Thank you for your message! We will get back to you within 24 hours.</p>}
+        {state.errors && state.errors.length > 0 && <p className="text-red-600">Something went wrong. Please try again or email us directly at info@ezdigitalsolutions.nl</p>}
+        <button type="submit" disabled={state.submitting} className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#0f1729] text-white rounded-xl hover:bg-[#1a2238] transition-all duration-200 shadow-lg shadow-[#0f1729]/10 hover:shadow-xl hover:shadow-[#0f1729]/20 group disabled:opacity-70 disabled:cursor-not-allowed">
+          {state.submitting ? 'Sending...' : 'Send Message'}
+          <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+        </button>
+      </form>
+    </>
+  );
+}
+
+// FormSubmit.co - رایگان و بدون ثبت‌نام. پیام‌ها مستقیماً به ایمیل ارسال می‌شوند.
+const FORMSUBMIT_EMAIL = 'info@ezdigitalsolutions.nl';
+
+function ContactFormFallback() {
+  const [state, setState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', company: '', message: '' });
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    setState('sending');
+    try {
+      const data = Object.fromEntries(formData.entries()) as Record<string, string>;
+      data._replyto = data.email || ''; // برای پاسخ مستقیم به فرستنده
+      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        setState('success');
+        form.reset();
+      } else {
+        setState('error');
+      }
+    } catch {
+      setState('error');
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  if (state === 'success') {
+    return <p className="text-green-600 font-medium">Thank you for your message! We will get back to you within 24 hours.</p>;
+  }
 
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <input type="hidden" name="_subject" value="New contact from website" />
+      <input type="hidden" name="_captcha" value="false" />
+      <div>
+        <label htmlFor="name" className="block text-[#0f1729] mb-2">Name *</label>
+        <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all" placeholder="Your name" />
+      </div>
+      <div>
+        <label htmlFor="email" className="block text-[#0f1729] mb-2">Email *</label>
+        <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all" placeholder="your.email@company.com" />
+      </div>
+      <div>
+        <label htmlFor="company" className="block text-[#0f1729] mb-2">Company</label>
+        <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all" placeholder="Your company name" />
+      </div>
+      <div>
+        <label htmlFor="message" className="block text-[#0f1729] mb-2">Message *</label>
+        <textarea id="message" name="message" required rows={6} className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all resize-none" placeholder="Tell us about your project and what you're looking to achieve..." />
+      </div>
+      {state === 'error' && <p className="text-red-600">Something went wrong. Please try again or email us directly at info@ezdigitalsolutions.nl</p>}
+      <button type="submit" disabled={state === 'sending'} className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#0f1729] text-white rounded-xl hover:bg-[#1a2238] transition-all duration-200 shadow-lg shadow-[#0f1729]/10 hover:shadow-xl hover:shadow-[#0f1729]/20 group disabled:opacity-70 disabled:cursor-not-allowed">
+        {state === 'sending' ? 'Sending...' : 'Send Message'}
+        <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+      </button>
+    </form>
+  );
+}
+
+export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -63,78 +141,7 @@ export default function Contact() {
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-[#0f1729] mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-[#0f1729] mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all"
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-[#0f1729] mb-2">
-                    Company
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all"
-                    placeholder="Your company name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-[#0f1729] mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-border bg-gray-light focus:outline-none focus:ring-2 focus:ring-[#5b7fc7] focus:border-transparent transition-all resize-none"
-                    placeholder="Tell us about your project and what you're looking to achieve..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#0f1729] text-white rounded-xl hover:bg-[#1a2238] transition-all duration-200 shadow-lg shadow-[#0f1729]/10 hover:shadow-xl hover:shadow-[#0f1729]/20 group"
-                >
-                  Send Message
-                  <Send size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-              </form>
+              {FORMSPREE_FORM_ID ? <ContactFormWithFormspree /> : <ContactFormFallback />}
             </motion.div>
 
             {/* Contact Info */}

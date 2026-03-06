@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, LucideIcon } from 'lucide-react';
 
 interface ProductCardProps {
@@ -10,6 +11,31 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ name, description, delay = 0, icon: Icon = Sparkles, link }: ProductCardProps) {
+  const isExternal = link?.startsWith('http');
+  const CtaLink = link ? (
+    isExternal ? (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 text-[#5b7fc7] text-sm group/btn w-fit"
+      >
+        <span className="group-hover/btn:underline underline-offset-2 transition-all">Explore</span>
+        <ArrowRight size={15} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
+      </a>
+    ) : (
+      <Link to={link} className="inline-flex items-center gap-2 text-[#5b7fc7] text-sm group/btn w-fit">
+        <span className="group-hover/btn:underline underline-offset-2 transition-all">Explore</span>
+        <ArrowRight size={15} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
+      </Link>
+    )
+  ) : (
+    <span className="inline-flex items-center gap-2 text-[#5b7fc7] text-sm group/btn w-fit">
+      <span className="group-hover/btn:underline underline-offset-2 transition-all">Explore</span>
+      <ArrowRight size={15} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
+    </span>
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -37,13 +63,7 @@ export function ProductCard({ name, description, delay = 0, icon: Icon = Sparkle
         </p>
 
         {/* CTA link */}
-        <button className="inline-flex items-center gap-2 text-[#5b7fc7] text-sm group/btn w-fit">
-          <span className="group-hover/btn:underline underline-offset-2 transition-all">Explore</span>
-          <ArrowRight
-            size={15}
-            className="group-hover/btn:translate-x-1 transition-transform duration-200"
-          />
-        </button>
+        {CtaLink}
       </div>
 
       {/* Hover glow overlay */}

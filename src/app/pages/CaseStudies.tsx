@@ -5,46 +5,55 @@ import { CTASection } from '../components/CTASection';
 export default function CaseStudies() {
   const caseStudies = [
     {
+      id: 'enterprise-workflow-automation',
       category: 'Automation Systems',
       title: 'Enterprise Workflow Automation',
       summary: 'Reduced manual processing time by 75% through intelligent automation systems for a Fortune 500 company, handling thousands of documents daily with 99% accuracy.'
     },
     {
+      id: 'smart-city-traffic-platform',
       category: 'AI Platform Development',
       title: 'Smart City Traffic Platform',
       summary: 'Built real-time AI traffic management system processing millions of data points for urban planning, improving traffic flow by 40% and reducing congestion.'
     },
     {
+      id: 'ai-powered-customer-service',
       category: 'Enterprise Infrastructure',
       title: 'AI-Powered Customer Service',
       summary: 'Deployed autonomous AI agents handling 10,000+ customer queries daily with 95% satisfaction rate, reducing response time from hours to seconds.'
     },
     {
+      id: 'financial-document-processing',
       category: 'Automation Systems',
       title: 'Financial Document Processing',
       summary: 'Automated invoice and document processing for a financial services firm, reducing processing time by 85% and eliminating data entry errors.'
     },
     {
+      id: 'healthcare-diagnostic-assistant',
       category: 'AI Product Development',
       title: 'Healthcare Diagnostic Assistant',
       summary: 'Developed AI diagnostic support tool for healthcare providers, improving diagnostic accuracy by 30% and reducing assessment time by 60%.'
     },
     {
+      id: 'supply-chain-optimization',
       category: 'Enterprise Systems',
       title: 'Supply Chain Optimization',
       summary: 'Implemented AI-powered supply chain management system for global manufacturer, reducing inventory costs by 35% and improving delivery times by 25%.'
     },
     {
+      id: 'legal-document-analysis',
       category: 'Automation Systems',
       title: 'Legal Document Analysis',
       summary: 'Created intelligent document analysis system for law firm, automating contract review and reducing legal research time by 70%.'
     },
     {
+      id: 'real-estate-valuation-platform',
       category: 'AI Platform Development',
       title: 'Real Estate Valuation Platform',
       summary: 'Built AI platform for automated property valuation with 95% accuracy, processing valuations in minutes instead of days.'
     },
     {
+      id: 'hr-recruitment-automation',
       category: 'Enterprise Infrastructure',
       title: 'HR Recruitment Automation',
       summary: 'Deployed AI recruitment assistant for enterprise HR, screening 5,000+ candidates monthly and reducing time-to-hire by 50%.'
@@ -121,13 +130,15 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((study, index) => (
-              <CaseStudyCard
-                key={index}
-                category={study.category}
-                title={study.title}
-                summary={study.summary}
-                delay={index * 0.05}
-              />
+              <div key={index} id={study.id} className="scroll-mt-32">
+                <CaseStudyCard
+                  category={study.category}
+                  title={study.title}
+                  summary={study.summary}
+                  delay={index * 0.05}
+                  to={study.id ? `/case-studies#${study.id}` : undefined}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -213,7 +224,7 @@ export default function CaseStudies() {
         primaryButtonText="Book Strategy Call"
         primaryButtonLink="/contact"
         secondaryButtonText="View Solutions"
-        secondaryButtonLink="/solutions"
+        secondaryButtonLink="/services"
       />
     </div>
   );

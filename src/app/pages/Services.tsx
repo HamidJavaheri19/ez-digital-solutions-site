@@ -3,6 +3,7 @@ import { Search, Zap, Rocket, Users, Building2, CheckCircle2, ArrowRight } from 
 import { CTASection } from '../components/CTASection';
 
 interface ServicePackage {
+  id?: string;
   icon: React.ElementType;
   title: string;
   description: string;
@@ -13,6 +14,7 @@ interface ServicePackage {
 
 const services: ServicePackage[] = [
   {
+    id: 'ai-opportunity-scan',
     icon: Search,
     title: 'AI Opportunity Scan',
     description: 'Comprehensive analysis of your business to identify high-impact AI automation opportunities and create a strategic implementation roadmap.',
@@ -31,6 +33,7 @@ const services: ServicePackage[] = [
     duration: '2-3 weeks'
   },
   {
+    id: 'ai-automation-implementation',
     icon: Zap,
     title: 'AI Automation Implementation',
     description: 'End-to-end implementation of AI automation systems tailored to your specific workflows and business processes.',
@@ -49,6 +52,7 @@ const services: ServicePackage[] = [
     duration: '6-12 weeks'
   },
   {
+    id: 'ai-product-mvp',
     icon: Rocket,
     title: 'AI Product MVP',
     description: 'Rapid development of AI-powered product MVPs to validate your idea and get to market quickly with core functionality.',
@@ -67,6 +71,7 @@ const services: ServicePackage[] = [
     duration: '8-16 weeks'
   },
   {
+    id: 'startup-technical-mentoring',
     icon: Users,
     title: 'Startup Technical Mentoring',
     description: 'Ongoing technical mentorship and guidance to help startups navigate technical challenges and build robust AI systems.',
@@ -85,6 +90,7 @@ const services: ServicePackage[] = [
     duration: 'Ongoing'
   },
   {
+    id: 'enterprise-transformation',
     icon: Building2,
     title: 'Enterprise Transformation',
     description: 'Large-scale AI transformation programs for enterprises, including strategy, implementation, and change management.',
@@ -133,11 +139,12 @@ export default function Services() {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
+                id={service.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${
+                className={`scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >

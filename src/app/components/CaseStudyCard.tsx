@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 interface CaseStudyCardProps {
@@ -6,9 +7,17 @@ interface CaseStudyCardProps {
   summary: string;
   category: string;
   delay?: number;
+  to?: string;
 }
 
-export function CaseStudyCard({ title, summary, category, delay = 0 }: CaseStudyCardProps) {
+export function CaseStudyCard({ title, summary, category, delay = 0, to }: CaseStudyCardProps) {
+  const linkContent = (
+    <span className="inline-flex items-center gap-2 text-[#5b7fc7] text-sm group/btn w-fit">
+      <span className="group-hover/btn:underline underline-offset-2 transition-all">View Case Study</span>
+      <ArrowRight size={15} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
+    </span>
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -35,13 +44,7 @@ export function CaseStudyCard({ title, summary, category, delay = 0 }: CaseStudy
         </p>
 
         {/* View link */}
-        <button className="inline-flex items-center gap-2 text-[#5b7fc7] text-sm group/btn w-fit">
-          <span className="group-hover/btn:underline underline-offset-2 transition-all">View Case Study</span>
-          <ArrowRight
-            size={15}
-            className="group-hover/btn:translate-x-1 transition-transform duration-200"
-          />
-        </button>
+        {to ? <Link to={to}>{linkContent}</Link> : linkContent}
       </div>
 
       {/* Hover glow */}

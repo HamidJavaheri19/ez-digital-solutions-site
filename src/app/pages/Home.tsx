@@ -205,11 +205,11 @@ export default function Home() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            <ServiceCard icon={Bot} title="AI Agents" description="Build intelligent AI agents that handle complex tasks autonomously, from customer support to data analysis." delay={0} />
-            <ServiceCard icon={Workflow} title="AI Automation" description="Streamline operations with intelligent automation systems that reduce manual work and increase efficiency." delay={0.08} />
-            <ServiceCard icon={Rocket} title="AI Product Development" description="Design and develop AI-powered products that deliver exceptional user experiences and business value." delay={0.16} />
-            <ServiceCard icon={Users} title="Startup Mentoring" description="Guide startups through technical challenges with expert mentoring and strategic AI implementation." delay={0.24} />
-            <ServiceCard icon={Building2} title="Enterprise Systems" description="Build scalable AI infrastructure for large organizations with robust security and compliance." delay={0.32} />
+            <ServiceCard icon={Bot} title="AI Agents" description="Build intelligent AI agents that handle complex tasks autonomously, from customer support to data analysis." delay={0} to="/services#ai-opportunity-scan" />
+            <ServiceCard icon={Workflow} title="AI Automation" description="Streamline operations with intelligent automation systems that reduce manual work and increase efficiency." delay={0.08} to="/services#ai-automation-implementation" />
+            <ServiceCard icon={Rocket} title="AI Product Development" description="Design and develop AI-powered products that deliver exceptional user experiences and business value." delay={0.16} to="/services#ai-product-mvp" />
+            <ServiceCard icon={Users} title="Startup Mentoring" description="Guide startups through technical challenges with expert mentoring and strategic AI implementation." delay={0.24} to="/services#startup-technical-mentoring" />
+            <ServiceCard icon={Building2} title="Enterprise Systems" description="Build scalable AI infrastructure for large organizations with robust security and compliance." delay={0.32} to="/services#enterprise-transformation" />
           </div>
         </div>
       </section>
@@ -235,21 +235,21 @@ export default function Home() {
               description="AI traffic intelligence platform that provides real-time insights and predictive analytics for smart city management." 
               delay={0}
               icon={MapPin}
-              link="https://navixi.ezdigitalsolutions.nl/"
+              link="/products#navixi"
             />
             <ProductCard 
               name="EZHomeFinder" 
               description="AI-powered real estate platform that helps users find their perfect home through intelligent matching and predictive analytics." 
               delay={0.1}
               icon={HomeIcon}
-              link="https://www.ezhomefinder.nl/"
+              link="/products#ezhomefinder"
             />
             <ProductCard 
               name="EZ Learning Language" 
               description="AI-powered language learning platform that adapts to individual learning styles and accelerates language acquisition through intelligent personalization." 
               delay={0.2}
               icon={BookOpen}
-              link="https://ezlearninglanguage.nl/"
+              link="/products#ez-learning-language"
             />
           </div>
           <motion.div
@@ -264,7 +264,7 @@ export default function Home() {
               description="Bespoke AI platforms designed and built specifically for your organization's unique requirements, workflows, and business objectives." 
               delay={0}
               icon={Network}
-              link="/contact"
+              link="/products#custom-ai-platforms"
             />
           </motion.div>
         </div>
@@ -377,9 +377,9 @@ export default function Home() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-            <CaseStudyCard category="Automation Systems" title="Enterprise Workflow Automation" summary="Reduced manual processing time by 75% through intelligent automation systems for a Fortune 500 company." delay={0} />
-            <CaseStudyCard category="AI Platform Development" title="Smart City Traffic Platform" summary="Built real-time AI traffic management system processing millions of data points for urban planning." delay={0.1} />
-            <CaseStudyCard category="Enterprise Infrastructure" title="AI-Powered Customer Service" summary="Deployed autonomous AI agents handling 10,000+ customer queries daily with 95% satisfaction rate." delay={0.2} />
+            <CaseStudyCard category="Automation Systems" title="Enterprise Workflow Automation" summary="Reduced manual processing time by 75% through intelligent automation systems for a Fortune 500 company." delay={0} to="/case-studies#enterprise-workflow-automation" />
+            <CaseStudyCard category="AI Platform Development" title="Smart City Traffic Platform" summary="Built real-time AI traffic management system processing millions of data points for urban planning." delay={0.1} to="/case-studies#smart-city-traffic-platform" />
+            <CaseStudyCard category="Enterprise Infrastructure" title="AI-Powered Customer Service" summary="Deployed autonomous AI agents handling 10,000+ customer queries daily with 95% satisfaction rate." delay={0.2} to="/case-studies#ai-powered-customer-service" />
           </div>
           <motion.div
             initial={{ opacity: 0 }}

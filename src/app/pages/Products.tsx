@@ -26,7 +26,7 @@ export default function Products() {
       </section>
 
       {/* Navixi */}
-      <section className="py-24 bg-white">
+      <section id="navixi" className="py-24 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -103,7 +103,7 @@ export default function Products() {
       </section>
 
       {/* EZHomeFinder */}
-      <section className="py-24 bg-gradient-to-br from-gray-light to-white">
+      <section id="ezhomefinder" className="py-24 bg-gradient-to-br from-gray-light to-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -180,7 +180,7 @@ export default function Products() {
       </section>
 
       {/* EZ Learning Language */}
-      <section className="py-24 bg-white">
+      <section id="ez-learning-language" className="py-24 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -257,7 +257,7 @@ export default function Products() {
       </section>
 
       {/* Custom AI Platforms */}
-      <section className="py-24 bg-gradient-to-br from-gray-light to-white">
+      <section id="custom-ai-platforms" className="py-24 bg-gradient-to-br from-gray-light to-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div

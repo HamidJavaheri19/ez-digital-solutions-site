@@ -199,7 +199,7 @@ export default function CaseStudies() {
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#5b7fc7] to-[#4a5f8f]" />
               <div>
                 <div className="text-[#0f1729]">Sarah Johnson</div>
-                <div className="text-[#6b7fa8]">CTO, Fortune 500 Company</div>
+                <div className="text-[#6b7fa8]">CTO, Fortune Company</div>
               </div>
             </div>
           </motion.div>

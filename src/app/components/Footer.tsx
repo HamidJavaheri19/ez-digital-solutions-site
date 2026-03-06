@@ -20,11 +20,6 @@ export function Footer() {
             <h3 className="text-lg mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/solutions" className="text-[#8fa5c9] hover:text-white transition-colors">
-                  Solutions
-                </Link>
-              </li>
-              <li>
                 <Link to="/services" className="text-[#8fa5c9] hover:text-white transition-colors">
                   Services
                 </Link>
@@ -90,7 +85,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-[#2d3561]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[#8fa5c9] text-sm">
-              © {new Date().getFullYear()} EZ Digital Solutions B.V. - KVK: 96596546
+              © 2025 EZ Digital Solutions B.V. - KVK: 96596546
             </p>
             <p className="text-[#8fa5c9] text-sm">
               All rights reserved.

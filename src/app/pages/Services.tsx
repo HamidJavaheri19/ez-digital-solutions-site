@@ -194,10 +194,15 @@ export default function Services() {
                     </div>
 
                     {/* CTA Button */}
-                    <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#0f1729] text-white rounded-xl hover:bg-[#1a2238] transition-all duration-200 shadow-lg shadow-[#0f1729]/10 hover:shadow-xl hover:shadow-[#0f1729]/20 group">
+                    <a
+                      href="https://calendly.com/hamid-javaheri/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#0f1729] text-white rounded-xl hover:bg-[#1a2238] transition-all duration-200 shadow-lg shadow-[#0f1729]/10 hover:shadow-xl hover:shadow-[#0f1729]/20 group"
+                    >
                       Get Started
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </motion.div>

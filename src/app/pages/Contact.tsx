@@ -225,9 +225,14 @@ export default function Contact() {
                 <p className="mb-6 text-white/90">
                   Schedule a free 30-minute consultation to discuss your AI needs and explore how we can help.
                 </p>
-                <button className="w-full px-6 py-3 bg-white text-[#5b7fc7] rounded-xl hover:bg-white/90 transition-all duration-200 shadow-lg">
+                <a
+                  href="https://calendly.com/hamid-javaheri/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full px-6 py-3 bg-white text-[#5b7fc7] rounded-xl hover:bg-white/90 transition-all duration-200 shadow-lg text-center font-medium"
+                >
                   Schedule Call
-                </button>
+                </a>
               </div>
             </motion.div>
           </div>

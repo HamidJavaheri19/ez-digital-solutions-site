@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Search, Zap, Rocket, Users, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Search, Bot, Zap, Rocket, Users, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
 
 interface ServicePackage {
@@ -10,6 +10,7 @@ interface ServicePackage {
   deliverables: string[];
   outcomes: string[];
   duration: string;
+  ctaText?: string;
 }
 
 const services: ServicePackage[] = [
@@ -31,6 +32,27 @@ const services: ServicePackage[] = [
       'Strategic implementation plan'
     ],
     duration: '2-3 weeks'
+  },
+  {
+    id: 'ai-agents',
+    icon: Bot,
+    title: 'AI Agents',
+    description: 'Design and deploy intelligent AI agents that automate complex business processes, interact with users, and integrate with your existing systems.',
+    deliverables: [
+      'Customer support automation',
+      'Data analysis and reporting',
+      'Document processing',
+      'Internal workflow automation',
+      'AI copilots for employees'
+    ],
+    outcomes: [
+      'AI customer support agents',
+      'Knowledge base assistants',
+      'Sales assistants',
+      'Operations automation agents'
+    ],
+    duration: 'Discovery → Prototype → Production',
+    ctaText: 'Build Your Agent'
   },
   {
     id: 'ai-automation-implementation',
@@ -207,7 +229,7 @@ export default function Services() {
                       rel="noopener noreferrer"
                       className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#0f1729] text-white rounded-xl hover:bg-[#1a2238] transition-all duration-200 shadow-lg shadow-[#0f1729]/10 hover:shadow-xl hover:shadow-[#0f1729]/20 group"
                     >
-                      Get Started
+                      {service.ctaText || 'Get Started'}
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>

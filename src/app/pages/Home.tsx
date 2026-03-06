@@ -205,11 +205,12 @@ export default function Home() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            <ServiceCard icon={Bot} title="AI Agents" description="Build intelligent AI agents that handle complex tasks autonomously, from customer support to data analysis." delay={0} to="/services#ai-opportunity-scan" />
-            <ServiceCard icon={Workflow} title="AI Automation" description="Streamline operations with intelligent automation systems that reduce manual work and increase efficiency." delay={0.08} to="/services#ai-automation-implementation" />
-            <ServiceCard icon={Rocket} title="AI Product Development" description="Design and develop AI-powered products that deliver exceptional user experiences and business value." delay={0.16} to="/services#ai-product-mvp" />
-            <ServiceCard icon={Users} title="Startup Mentoring" description="Guide startups through technical challenges with expert mentoring and strategic AI implementation." delay={0.24} to="/services#startup-technical-mentoring" />
-            <ServiceCard icon={Building2} title="Enterprise Systems" description="Build scalable AI infrastructure for large organizations with robust security and compliance." delay={0.32} to="/services#enterprise-transformation" />
+            <ServiceCard icon={Search} title="AI Opportunity Scan" description="A structured 2–3 week engagement to identify high-impact AI opportunities in your business and create a clear implementation roadmap." delay={0} to="/services#ai-opportunity-scan" />
+            <ServiceCard icon={Bot} title="AI Agents" description="Design and deploy intelligent AI agents that automate complex business processes, interact with users, and integrate with your existing systems." delay={0.08} to="/services#ai-agents" />
+            <ServiceCard icon={Workflow} title="AI Automation" description="Streamline operations with intelligent automation systems that reduce manual work and increase efficiency." delay={0.16} to="/services#ai-automation-implementation" />
+            <ServiceCard icon={Rocket} title="AI Product Development" description="Design and develop AI-powered products that deliver exceptional user experiences and business value." delay={0.24} to="/services#ai-product-mvp" />
+            <ServiceCard icon={Users} title="Startup Mentoring" description="Guide startups through technical challenges with expert mentoring and strategic AI implementation." delay={0.32} to="/services#startup-technical-mentoring" />
+            <ServiceCard icon={Building2} title="Enterprise Systems" description="Build scalable AI infrastructure for large organizations with robust security and compliance." delay={0.4} to="/services#enterprise-transformation" />
           </div>
         </div>
       </section>

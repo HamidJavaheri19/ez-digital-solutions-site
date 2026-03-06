@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ezdigitalsolutions.nl/sitemap.xml
+AI-Policy: https://ezdigitalsolutions.nl/ai.txt
